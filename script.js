@@ -57,3 +57,32 @@ if ("serviceWorker" in navigator) {
       .catch(error => console.log("❌ Service Worker Error:", error));
   });
 }
+let deferredPrompt;
+const installBtn = document.getElementById('installBtn');
+
+// Listen for the beforeinstallprompt event
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent Chrome from showing its default prompt
+  e.preventDefault();
+  // Save the event to trigger later
+  deferredPrompt = e;
+  // Show the install button
+  installBtn.style.display = 'block';
+});
+
+// When the button is clicked
+installBtn.addEventListener('click', async () => {
+  if (deferredPrompt) {
+    // Show the prompt
+    deferredPrompt.prompt();
+    // Wait for the user to respond
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log(`User response: ${outcome}`);
+    // Hide the button
+    installBtn.style.display = 'none';
+    // Clear the saved prompt
+    deferredPrompt = null;
+  }
+});
+
+
