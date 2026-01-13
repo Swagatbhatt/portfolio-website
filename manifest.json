@@ -5,9 +5,9 @@
   "start_url": ".",
   "scope": "/portfolio-website/",
   "display": "standalone",
+  "orientation": "landscape-primary",
  "background_color": "#ffffff",
 "theme_color": "#4CAF50",
-"orientation": "landscape-primary"
   "icons": [
     {
       "src": "icon-192.png",
