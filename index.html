@@ -109,11 +109,17 @@ function enableNotifications() {
           body: "You will receive updates from this app.",
           icon: "icon-192.png"
         });
+
+        // ✅ POINT 4: SHOW TOP-RIGHT TOAST
+        showToast("Notifications enabled successfully ✅");
       });
+    } else {
+      showToast("Notification permission denied ❌");
     }
   });
 }
 </script>
+
 <div id="toast">🔔 Notifications Enabled!</div>
 <style>
 #toast {
@@ -136,6 +142,17 @@ function enableNotifications() {
   to { opacity: 1; transform: translateY(0); }
 }
 </style>
+<script>
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.innerText = message;
+  toast.style.display = "block";
+
+  setTimeout(() => {
+    toast.style.display = "none";
+  }, 3000);
+}
+</script>
 
 </body>
 </html>
