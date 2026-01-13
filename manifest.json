@@ -1,7 +1,9 @@
 {
   "name": "Swagat Bhatt Portfolio",
   "short_name": "Portfolio",
-  "start_url": "./index.html",
+  "description": "Personal portfolio of Swagat Bhatt showcasing projects, skills, and experience.",
+  "start_url": ".",
+  "scope": "/portfolio-website/",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
