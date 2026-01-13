@@ -93,5 +93,27 @@
   </footer>
 
   <script src="script.js"></script>
+  <button onclick="enableNotifications()">Enable Notifications</button>
+
+<script>
+function enableNotifications() {
+  if (!("Notification" in window)) {
+    alert("Notifications not supported");
+    return;
+  }
+
+  Notification.requestPermission().then(permission => {
+    if (permission === "granted") {
+      navigator.serviceWorker.ready.then(registration => {
+        registration.showNotification("PWA Notification Enabled 🎉", {
+          body: "You will receive updates from this app.",
+          icon: "icon-192.png"
+        });
+      });
+    }
+  });
+}
+</script>
+
 </body>
 </html>
