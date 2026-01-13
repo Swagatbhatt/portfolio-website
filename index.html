@@ -93,32 +93,34 @@
   </footer>
 
   <script src="script.js"></script>
-  <button onclick="enableNotifications()">Enable Notifications</button>
+ <button id="notifyBtn">Enable Notifications</button>
 
 <script>
-function enableNotifications() {
+document.getElementById("notifyBtn").addEventListener("click", async () => {
   if (!("Notification" in window)) {
     alert("Notifications not supported");
     return;
   }
 
-  Notification.requestPermission().then(permission => {
-    if (permission === "granted") {
-      navigator.serviceWorker.ready.then(registration => {
-        registration.showNotification("PWA Notification Enabled 🎉", {
-          body: "You will receive updates from this app.",
-          icon: "icon-192.png"
-        });
+  const permission = await Notification.requestPermission();
 
-        // ✅ POINT 4: SHOW TOP-RIGHT TOAST
-        showToast("Notifications enabled successfully ✅");
-      });
-    } else {
-      showToast("Notification permission denied ❌");
-    }
-  });
-}
+  if (permission === "granted") {
+    const reg = await navigator.serviceWorker.ready;
+
+    reg.showNotification("PWA Notification Enabled 🎉", {
+      body: "You will receive updates from this app.",
+      icon: "icon-192.png"
+    });
+
+    // ✅ FORCE toast visibility
+    showToast("Notifications enabled successfully ✅");
+
+  } else {
+    showToast("Notification permission denied ❌");
+  }
+});
 </script>
+
 
 <div id="toast">🔔 Notifications Enabled!</div>
 <style>
