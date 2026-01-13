@@ -3,6 +3,7 @@ const CACHE_NAME = "portfolio-cache-v1";
 const urlsToCache = [
   "./",
   "./index.html",
+  "./offline.html",
   "./style.css",
   "./script.js",
   "./manifest.json",
